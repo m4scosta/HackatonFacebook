@@ -1,0 +1,1 @@
+web: gunicorn HackatonFacebook.wsgi --log-file -
