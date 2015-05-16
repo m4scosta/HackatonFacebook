@@ -4,7 +4,7 @@
 
 angular.module('MyApp').controller('MyCtrl', function(Ajax, $scope){
     $scope.getByAjax = function(){
-        Ajax.get('get/teste').success(function(result,a, b, c){
+        Ajax.get('/get/teste').success(function(result,a, b, c){
             $scope.ajax_msg = result.ajax_msg;
         });
     }
