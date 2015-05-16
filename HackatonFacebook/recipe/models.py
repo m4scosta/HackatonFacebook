@@ -17,12 +17,12 @@ class Ingredient(models.Model):
 
 
 class Recipe(models.Model):
-    user_add = models.ForeignKey(User)
+    user_add = models.ForeignKey(User, null=True, blank=True)
     date_add = models.DateField(auto_now_add=True)
     name = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to='recipe/images', null=True, blank=True)
-    description = models.TextField()
-    preparation = models.TextField()
+    photo = models.URLField(max_length=200, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    preparation = models.TextField(null=True, blank=True)
     prepare_time = models.CharField(max_length=100, null=True, blank=True)
     income = models.CharField(max_length=100, null=True, blank=True)  # rendimento
 

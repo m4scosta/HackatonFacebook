@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block body %}
+    <img src="{{ recipe.photo }}" alt="{{ recipe.name }}" width="200px" height="200px">
     Adicionado por: {{ recipe.user_add }} em {{ recipe.date_add|date:"d/m/Y" }} <br>
     Nome: {{ recipe.name }} <br>
     Descrição: {{ recipe.description }} <br>
