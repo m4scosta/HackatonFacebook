@@ -5,16 +5,26 @@
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
         
-        <link href="{% static 'css/bin/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap-social.css' %}" />
+        <link rel="stylesheet" href="{% static 'lib/font-awesome-4.3.0/css/font-awesome.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'components/navbar/navbar.css' %}" />
         {% block css %}{% endblock %}
 
-        <script src="{% static 'js/bin/angular.min.js' %}"></script>
-        <script src="{% static 'js/bin/ui-bootstrap-0.13.0.min.js' %}"></script>
-        <script src="{% static 'js/configs/configs.js' %}"></script>
+        <script src="{% static 'lib/jquery/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static 'lib/angular/js/angular.min.js' %}"></script>
+        <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'lib/ui-utils-0.2.3/ui-utils.min.js' %}"></script>
         <script src="{% static 'js/configs/ajax.js' %}"></script>
+        <script src="{% static 'js/configs/configs.js' %}"></script>
+        <script src="{% static 'js/controllers/myCtrl.js' %}"></script>
+        <script src="{% static 'components/navbar/navbar.js' %}"></script>
         {% block js %}{% endblock %}
     </head>
-    <body ng-app="MyApp">
+
+    <body ng-app="HackathonApp" ng-controller="MyCtrl">
+        <navbar-hack></navbar-hack>
+
         {% block body %}{% endblock %}
     </body>
 
