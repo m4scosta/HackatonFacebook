@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/controllers/homeCtrl.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div ng-controller="homeCtrl" class="w1h1 medium">
+        <label class="pu-in-center title-style">
+            <p>O que posso fazer com?</p>
+            <div ng-if="ingredients.length > 0" >
+                <span style="font-size: 21px;">Ingredientes:</span>
+                <div class="btn btn-lg btn-default" ng-repeat=" ingredient in ingredients"
+                        ng-mouseenter="toggleVisibility($index)"
+                        ng-mouseleave="toggleVisibility($index)"
+                        ng-click="takeOff($index)">
+                    {[{ingredient.name}]}
+                    <i ng-show="ingredient.delete" class="glyphicon glyphicon-trash"></i>
+                </div>
+            </div>
+            <input class="form-control tags-style" ui-keypress="{13:'newIngredient($event)'}" ng-model="ingerdientModel" type="text" placeholder="Ingredientes..."/>
+            <button class="btn btn-lg btn-success" ng-click="newIngredient()">Add</button>
+            <p>
+                <button class="btn btn-lg btn-success" ng-click="search()">Pesquisar</button>
+            </p>
+        </label>
+    </div>
+{% endblock %}
