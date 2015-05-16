@@ -2,12 +2,10 @@
 from django import forms
 from django.db.models import Q
 from django.forms.formsets import formset_factory
-from .models import Unit, Ingredient, RecipeIngredient, Recipe
+from .models import Ingredient, RecipeIngredient, Recipe
 
 
 class IngredientForm(forms.Form):
-    quantity = forms.CharField(required=False)
-    unit = forms.ModelChoiceField(queryset=Unit.objects.all(), required=False)
     ingredient = forms.ModelChoiceField(queryset=Ingredient.objects.all(), required=False)
 
 
@@ -21,15 +19,10 @@ class RecipeSearchForm(forms.Form):
 
     def get_queryset(self):
         ingredients = self.ingredients.getlist('ingredient')
-        units = self.ingredients.getlist('unit')
-        quantities = self.ingredients.getlist('quantity')
         q = Q()
-        for a, b, c in zip(ingredients, units, quantities):
-            print a, b, c
-            if a:
-                q = q | Q(recipe=a)
-            if b:
-                q = q | Q(ingredient=b)
+        for ingredient in ingredients:
+            if ingredient:
+                q = q | Q(ingredient=ingredient)
         recipe_ingredients = RecipeIngredient.objects.filter(q)
         qs = Recipe.objects.filter(id__in=recipe_ingredients)
         return qs

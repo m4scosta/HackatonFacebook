@@ -29,6 +29,11 @@ class Recipe(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_ingredients(self):
+        recipe_ingredients = self.recipeingredient_set.all().values_list('ingredient')
+        qs = Ingredient.objects.filter(id__in=recipe_ingredients)
+        return qs
+
 
 class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe)
