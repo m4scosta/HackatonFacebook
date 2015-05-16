@@ -2,10 +2,6 @@
  * Created by bustamante on 5/15/15.
  */
 
-angular.module('MyApp').controller('MyCtrl', function(Ajax, $scope){
-    $scope.getByAjax = function(){
-        Ajax.get('/get/teste').success(function(result){
-            $scope.ajax_msg = result.ajax_msg;
-        });
-    }
+angular.module('HackathonApp').controller('MyCtrl', function(Ajax, $scope){
+
 });
