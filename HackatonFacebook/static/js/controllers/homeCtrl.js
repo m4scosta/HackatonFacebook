@@ -22,12 +22,12 @@ angular.module('HackathonApp').controller("homeCtrl", function($scope, Ajax){
     };
 
     $scope.search = function(){
-        var send = {send: []};
+        var send = {ingredients: []};
         for(var i = 0; i < $scope.ingredients.length; ++i)
-            send.push($scope.ingredients[i].name);
+            send.ingredients.push($scope.ingredients[i].name);
 
-        if(send.length > 0)
-            Ajax.post('/list/receipe', angular.json(send));
+        if(send.ingredients.length > 0)
+            Ajax.post('/list/recipe', angular.toJson(send));
     }
 });
 
