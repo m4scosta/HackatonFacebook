@@ -1,11 +1,11 @@
 {% extends 'base/base.html' %}
-
+{% load staticfiles %}
 {% block title %}
     {{ title }}
 {% endblock %}
 
 {% block js %}
-    <script src="../static/js/controllers/myCtrl.js"></script>
+    <script src="{% static 'js/controllers/myCtrl.js' %}"></script>
 {% endblock %}
 
 {% block body %}
