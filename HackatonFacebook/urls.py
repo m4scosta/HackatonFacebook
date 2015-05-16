@@ -5,7 +5,7 @@ _BASE_VIEW = 'HackatonFacebook.views'
 _BASE_AJAX = 'HackatonFacebook.core'
 
 urlpatterns = patterns('',
-    url(r'/get/teste', '%s.usecase.ajax.get_by_ajax' % _BASE_AJAX)
+    url(r'^get/teste', '%s.usecase.ajax.get_by_ajax' % _BASE_AJAX)
 )
 
 urlpatterns += patterns('',
