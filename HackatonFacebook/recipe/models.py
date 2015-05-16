@@ -33,7 +33,8 @@ class Recipe(models.Model):
 class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe)
     ingredient = models.ForeignKey(Ingredient)
-    quantity = models.DecimalField(decimal_places=4, max_digits=10)
+    quantity = models.CharField(max_length=100, null=True, blank=True)
+    unit = models.ForeignKey(Unit, null=True, blank=True)
 
 
 class Favorite(models.Model):

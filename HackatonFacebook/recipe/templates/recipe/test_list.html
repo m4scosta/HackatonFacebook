@@ -1,0 +1,7 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+    {% for object in qs %}
+        <a href="{% url 'test_details' object.pk %}">{{ object }}</a>
+    {% endfor %}
+{% endblock body %}
