@@ -1,0 +1,9 @@
+<span style="font-size: 21px;">{[{msg}]}</span>
+<div class="btn btn-default" ng-repeat=" ingredient in ingredients"
+        ng-mouseenter="toggleVisibility($index)"
+        ng-mouseleave="toggleVisibility($index)"
+        ng-click="takeOff($index)"
+        ng-class="{'btn-lg': btnlg == 'true'}">
+    {[{ ingredient.name }]}
+    <i ng-show="ingredient.delete" class="glyphicon glyphicon-trash"></i>
+</div>
