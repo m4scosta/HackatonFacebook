@@ -1,8 +1,8 @@
 import json
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from .forms import RecipeSearchForm, IngredientForm
+from .forms import RecipeSearchForm, IngredientForm, RecipeForm
 from .models import Recipe
 
 
@@ -44,3 +44,14 @@ def test_details(request, pk):
     context = {}
     context['recipe'] = recipe
     return render(request, 'recipe/test_details.html', context)
+
+
+def recipe_create_update(request):
+    form = RecipeForm(request.POST or None, request.FILES)
+    context = {}
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context['form'] = form
+    return render(request, 'recipe/recipe_form.html', context)

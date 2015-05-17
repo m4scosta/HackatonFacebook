@@ -35,6 +35,8 @@ class RecipeSearchForm(forms.Form):
             if recipe_id in recipes:
                 recipes[recipe_id]['count_have'] += 1
                 recipes[recipe_id]['count_no_have'] -= 1
+                recipes[recipe_id]['ingredients_in'].append(ri.ingredient.name)
+                recipes[recipe_id]['ingredients_out'].remove(ri.ingredient.name)
             else:
                 recipe_obj = get_object_or_404(Recipe, pk=recipe_id)
                 recipes[recipe_id] = {}
@@ -46,5 +48,19 @@ class RecipeSearchForm(forms.Form):
                 recipes[recipe_id]['income'] = ri.recipe.income
                 recipes[recipe_id]['count_have'] = 1
                 recipes[recipe_id]['count_no_have'] = recipe_obj.recipeingredient_set.count() - 1
+                recipes[recipe_id]['ingredients_in'] = []
+                recipes[recipe_id]['ingredients_in'].append(ri.ingredient.name)
+                recipes[recipe_id]['ingredients_out'] = []
+
+                for recipe_ingredient in recipe_obj.recipeingredient_set.all().values_list('ingredient__name'):
+                    recipes[recipe_id]['ingredients_out'].append(recipe_ingredient[0])
+
+                recipes[recipe_id]['ingredients_out'].remove(ri.ingredient.name)
         recipes = OrderedDict(sorted(recipes.items(), key=lambda t: (-(t[1]['count_have'] - t[1]['count_no_have']))))
         return recipes
+
+
+class RecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        exclude = ['user_add', 'description', 'photo']

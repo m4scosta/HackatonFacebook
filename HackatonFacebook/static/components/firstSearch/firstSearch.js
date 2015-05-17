@@ -37,8 +37,7 @@ angular.module('HackathonApp').directive("firstSearch", function(){
 
                 if (send.ingredients.length > 0) {
                     Ajax.post('/recipes', angular.toJson(send)).success(function (result) {
-                        if($scope.recipes == undefined)
-                            $scope.recipes = [];
+                        $scope.recipes = [];
                         for(key in result){
                             $scope.recipes.push(result[key]);
                         }
