@@ -18,7 +18,7 @@ angular.module('HackathonApp').directive("openProduct", function(){
 
             $scope.like = function(){
                 Ajax.post('/like', angular.toJson({recipe_id: $scope.openproduct.id})).success(function(result){
-                    console.log('opa o usuario deu um like');
+                    $scope.openproduct.likes += 1;
                 }).error(function(){
 
                 });
@@ -26,7 +26,7 @@ angular.module('HackathonApp').directive("openProduct", function(){
 
             $scope.favoritos = function(){
                 Ajax.post('/favoritos', angular.toJson({recipe_id: $scope.openproduct.id})).success(function(result){
-                    console.log('opa o usuario deu um like');
+                    $scope.openproduct.favorits += 1;
                 }).error(function(){
 
                 });
