@@ -6,7 +6,19 @@ angular.module('HackathonApp').directive('navbarHack', function(){
     return {
         restrict: 'E',
         templateUrl: 'static/components/navbar/navbar.html',
-        link: function(element, attr, scope){
+        controller: function($scope, $window, facebookService){
+        	$scope.getData = function() {
+	    		facebookService.getUserData().then(function(response) {
+		       		window.user = $scope.user = response;
+		    	});
+        	};
+
+        	$scope.$watch(function(){
+        		return $window.user
+        	}, function(){
+        		if(FB !== undefined)
+        			$scope.getData();
+        	});
         }
     }
 });

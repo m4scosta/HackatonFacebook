@@ -14,10 +14,13 @@
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-                            <a class="btn btn-social-icon btn-facebook btn-social-style">
+						<li ng-hide="user">
+                            <a ng-click="getData()" class="btn btn-social-icon btn-facebook btn-social-style">
                                 <i class="fa fa-facebook"></i>
                             </a>
+						</li>
+						<li ng-show="user" style="background-color: #fff">
+							{[{ user.name }]}
 						</li>
 					</ul>
 				</div>
