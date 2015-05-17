@@ -16,7 +16,9 @@
     <div class="put-in-center">
         <input class="form-control tags-style-sm" ui-keypress="{13:'newIngredient($event)'}" ng-model="ingerdientModel" type="text" placeholder="Ingredientes..."/>
         <button class="btn btn-primary" ng-click="newIngredient()">Add</button>
-        <button class="btn btn-success" ng-click="search()">Pesquisar</button>
+        <button class="btn btn-success" ng-click="search()">
+            Pesquisar
+        </button>
     </div>
     <div ng-if="ingredients.length > 0" class="put-in-center margin-5">
         <tags-hack ingredients="ingredients"></tags-hack>

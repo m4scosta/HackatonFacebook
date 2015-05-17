@@ -71,8 +71,10 @@ def like(request):
         recipe = get_object_or_404(Recipe, pk=pk)
         user = request.user
         user = get_object_or_404(User, id=user.pk)
-        like = Like(recipe=recipe, user=user)
-        like.save()
+
+        like, created = Like.objects.get_or_create(recipe=recipe, user=user)
+        if not created:
+            raise TypeError()
         return HttpResponse(json.dumps({'ok': 'ok'}))
     return HttpResponse(json.dumps({'false': 'false'}))
 
@@ -84,6 +86,11 @@ def favoritos(request):
         recipe = get_object_or_404(Recipe, pk=pk)
         user = request.user
         user = get_object_or_404(User, id=user.pk)
+
+        like, created = Favorite.objects.get_or_create(recipe=recipe, user=user)
+        if not created:
+            raise TypeError()
+            
         favorite = Favorite(recipe=recipe, user=user)
         favorite.save()
         return HttpResponse(json.dumps({'ok': 'ok'}))

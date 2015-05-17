@@ -20,15 +20,15 @@ angular.module('HackathonApp').directive("openProduct", function(){
                 Ajax.post('/like', angular.toJson({recipe_id: $scope.openproduct.id})).success(function(result){
                     $scope.openproduct.likes += 1;
                 }).error(function(){
-
+                    alert('Você já curtiu essa receita');
                 });
             };
 
             $scope.favoritos = function(){
                 Ajax.post('/favoritos', angular.toJson({recipe_id: $scope.openproduct.id})).success(function(result){
-                    $scope.openproduct.favorits += 1;
+                    $scope.openproduct.favorites += 1;
                 }).error(function(){
-
+                    alert('Essa receita já está em seus favoritos.');
                 });
             };
 

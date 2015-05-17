@@ -31,7 +31,6 @@ angular.module('HackathonApp').directive("firstSearch", function(){
 
             $scope.search = function () {
                 $scope.newIngredient();
-                $scope.have_search = $scope.small = true;
                 var send = {ingredients: []};
                 for (var i = 0; i < $scope.ingredients.length; ++i)
                     send.ingredients.push($scope.ingredients[i].name);
@@ -44,10 +43,9 @@ angular.module('HackathonApp').directive("firstSearch", function(){
                                 $scope.recipes.push(result[i][key]);
                             }
                         }
-                        console.log($scope.recipes);
-                        $scope.have_search = true;
+                        $scope.have_search = $scope.small = true;
                     }).error(function (result) {
-
+                        alert('Ocorreu um erro desconhecido');
                     });
                 }
             }

@@ -24,7 +24,7 @@
             <button class="btn btn-warning margin" ng-click="favoritos()">
                 <i class="glyphicon glyphicon-star"></i>
                 Favoritos
-                <span class="badge">{[{openproduct.favorits}]}</span>
+                <span class="badge">{[{openproduct.favorites}]}</span>
             </button>
         </div>
     </div>
@@ -43,19 +43,20 @@
         <div class="col-md-4">
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                <div class="row">
-                    <div class="col-md-7">
-                        <h3 class="panel-title" id="panel-title">O que falta</h3>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h3 class="panel-title" id="panel-title">O que falta</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <a class="btn btn-xs btn-block btn-social btn-facebook" ng-click="publishRecipe()">
+                                <i class="fa fa-facebook"></i> Pedir ajuda
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-5">
-                        <a class="btn btn-xs btn-block btn-social btn-facebook">
-                            <i class="fa fa-facebook"></i> Pedir ajuda
-                        </a>
-                    </div>
+                    <ul ng-repeat="ingredient in openproduct.ingredients_out">
+                        <li class="padding-10">{[{ ingredient }]}</li>
+                    </ul>
                 </div>
-                <ul ng-repeat="ingredient in openproduct.ingredients_out">
-                    <li class="padding-10">{[{ ingredient }]}</li>
-                </ul>
             </div>
         </div>
         <div class="col-md-4">
