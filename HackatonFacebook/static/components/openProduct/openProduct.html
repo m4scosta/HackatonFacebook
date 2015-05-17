@@ -11,14 +11,23 @@
     </div>
 
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-offset-4 col-md-8">
             <a href="#">
                 <img class="img-responsive" ng-src="{[{openproduct.photo}]}" alt="" style="max-width: 285px; max-height: 213">
             </a>
-            <button ng-click="like()">Like</button>
-            <button ng-click="favoritos()">Favoritos</button>
+            <button class="btn btn-danger margin" ng-click="like()">
+                <i class="glyphicon glyphicon-heart"></i>
+                Like
+            </button>
+            <button class="btn btn-warning margin" ng-click="favoritos()">
+                <i class="glyphicon glyphicon-star"></i>
+                Favoritos
+            </button>
         </div>
-        <div class="col-md-5">
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title" id="panel-title">O que tenho</h3>
@@ -27,6 +36,8 @@
                     <li class="padding-10">{[{ ingredient }]}</li>
                 </ul>
             </div>
+        </div>
+        <div class="col-md-4">
             <div class="panel panel-danger">
                 <div class="panel-heading">
                     <h3 class="panel-title" id="panel-title">O que falta</h3>
@@ -36,20 +47,7 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title" id="panel-title">Informações</h3>
-                </div>
-                <ul>
-                    <li class="padding-10">Rendimento: {[{ openproduct.income }]}</li>
-                    <li class="padding-10">Tempo: {[{ openproduct.prepare_time }]}</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title" id="panel-title">Como prepara</h3>
