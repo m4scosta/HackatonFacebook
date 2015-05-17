@@ -3,14 +3,17 @@
     height: calc(100vh - 90px);
 }
 
-.pu-in-center {
+.put-in-center {
     width: 100vw;
-    height: calc(100vh - 90px);
-    display: table-cell;
     vertical-align:middle;
     text-align:center;
     color: #000;
     text-decoration: none;
+}
+
+.put-in-center.put-in-center-height {
+    height: calc(100vh - 90px);
+    display: table-cell;
 }
 
 .title-style{
@@ -23,6 +26,11 @@
     display: inline;
     font-family: initial;
     font-size: 25px;
+    width: 50%;
+}
+
+.tags-style-sm {
+    display: inline;
     width: 50%;
 }
 
@@ -46,6 +54,7 @@
     border-color: #ccc;
 }
 
-.no-pointer{
-    cursor: default;
+.margin-5{
+    margin: 5px;
 }
+
