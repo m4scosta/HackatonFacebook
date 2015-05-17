@@ -6,4 +6,4 @@ __author__ = 'bustamante'
 
 
 def home(request):
-    return render(request, HOME_TEMPLATE)
+	return render(request, HOME_TEMPLATE, {})

@@ -11,6 +11,12 @@
         <link rel="stylesheet" href="{% static 'components/navbar/navbar.css' %}" />
         {% block css %}{% endblock %}
 
+        {% if user.is_authenticated %}
+            <script type="text/javascript">
+                window.user_fb_id = "{{ user.social_auth.all.0.uid }}";
+            </script>
+        {% endif %}
+
         <script src="{% static 'lib/jquery/js/jquery-1.11.1.min.js' %}"></script>
         <script src="{% static 'lib/angular/js/angular.min.js' %}"></script>
         <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>

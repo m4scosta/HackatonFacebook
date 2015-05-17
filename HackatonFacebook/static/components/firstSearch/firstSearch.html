@@ -1,7 +1,7 @@
 <div ng-hide="small" class="w1h1 medium">
     <label class="put-in-center put-in-center-height title-style">
         <p>O que posso fazer com:</p>
-        <div ng-if="ingredients.length > 0" >
+        <div ng-if="ingredients.length > 0" style="margin: 10px 0">
             <tags-hack ingredients="ingredients" msg="Ingredientes: "  btnlg="true"></tags-hack>
         </div>
         <input class="form-control tags-style" ui-keypress="{13:'newIngredient($event)'}" ng-model="ingerdientModel" type="text" placeholder="Ingredientes..."/>

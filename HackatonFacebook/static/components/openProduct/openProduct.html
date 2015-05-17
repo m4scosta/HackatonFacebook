@@ -1,15 +1,18 @@
+
+
 <div class="container">
 
     <div class="row">
-        <div class="col-md-10">
-            <h1 class="page-header">{[{ openproduct.name }]}
-            </h1>
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-danger" ng-click="closeProduct()">Voltar</button>
+        <button class="btn btn-danger" ng-click="closeProduct()">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+            Voltar
+        </button>
+        <div class="col-md-12 text-center">
+            <h2 class="page-header">
+                {[{ openproduct.name }]}
+            </h2>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-offset-4 col-md-8">
             <a href="#">
@@ -40,7 +43,16 @@
         <div class="col-md-4">
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h3 class="panel-title" id="panel-title">O que falta</h3>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h3 class="panel-title" id="panel-title">O que falta</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <a class="btn btn-xs btn-block btn-social btn-facebook">
+                                <i class="fa fa-facebook"></i> Pedir ajuda
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <ul ng-repeat="ingredient in openproduct.ingredients_out">
                     <li class="padding-10">{[{ ingredient }]}</li>
