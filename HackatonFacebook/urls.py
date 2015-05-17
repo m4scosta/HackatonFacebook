@@ -1,10 +1,14 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'HackatonFacebook.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+_BASE_VIEW = 'HackatonFacebook.views'
+_BASE_AJAX = 'HackatonFacebook.core'
 
+
+urlpatterns = patterns(
+    '',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', '%s.home.home' % _BASE_VIEW),
+    url(r'^', include('HackatonFacebook.recipe.urls')),
+    url('', include('social.apps.django_app.urls', namespace='social'))
 )

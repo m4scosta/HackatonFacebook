@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        
+        <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap-social.css' %}" />
+        <link rel="stylesheet" href="{% static 'lib/font-awesome-4.3.0/css/font-awesome.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'components/navbar/navbar.css' %}" />
+        {% block css %}{% endblock %}
+
+        <script src="{% static 'lib/jquery/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static 'lib/angular/js/angular.min.js' %}"></script>
+        <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'lib/ui-utils-0.2.3/ui-utils.min.js' %}"></script>
+        <script src="{% static 'js/configs/ajax.js' %}"></script>
+        <script src="{% static 'js/configs/configs.js' %}"></script>
+        <script src="{% static 'js/controllers/myCtrl.js' %}"></script>
+        <script src="{% static 'components/navbar/navbar.js' %}"></script>
+        {% block js %}{% endblock %}
+
+        <script type="text/javascript">
+            (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+    </head>
+
+    <body ng-app="HackathonApp" ng-controller="MyCtrl">
+        <navbar-hack></navbar-hack>
+
+        <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
+
+        {% block body %}{% endblock %}
+    </body>
+
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-63013695-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+</html>
+
