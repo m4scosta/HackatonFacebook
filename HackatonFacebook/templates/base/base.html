@@ -11,6 +11,26 @@
         <link rel="stylesheet" href="{% static 'components/navbar/navbar.css' %}" />
         {% block css %}{% endblock %}
 
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '1584090185178966',
+              xfbml      : true,
+              version    : 'v2.3'
+            });
+
+            window.FB = FB;
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
+
         <script src="{% static 'lib/jquery/js/jquery-1.11.1.min.js' %}"></script>
         <script src="{% static 'lib/angular/js/angular.min.js' %}"></script>
         <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
@@ -20,6 +40,7 @@
         <script src="{% static 'js/controllers/myCtrl.js' %}"></script>
         <script src="{% static 'components/navbar/navbar.js' %}"></script>
         {% block js %}{% endblock %}
+
     </head>
 
     <body ng-app="HackathonApp" ng-controller="MyCtrl">

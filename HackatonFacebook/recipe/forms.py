@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from collections import OrderedDict
 from django import forms
 from django.db.models import Q
 from django.forms.formsets import formset_factory
+from django.forms.models import inlineformset_factory
 from django.shortcuts import get_object_or_404
-from .models import RecipeIngredient, Recipe
+from .models import RecipeIngredient, Recipe, Ingredient
 
 
 class IngredientForm(forms.Form):
@@ -48,6 +48,8 @@ class RecipeSearchForm(forms.Form):
                 recipes[recipe_id]['income'] = ri.recipe.income
                 recipes[recipe_id]['count_have'] = 1
                 recipes[recipe_id]['count_no_have'] = recipe_obj.recipeingredient_set.count() - 1
+                recipes[recipe_id]['likes'] = recipe_obj.like_set.count()
+                recipes[recipe_id]['favorites'] = recipe_obj.favorite_set.count()
                 recipes[recipe_id]['ingredients_in'] = []
                 recipes[recipe_id]['ingredients_in'].append(ri.ingredient.name)
                 recipes[recipe_id]['ingredients_out'] = []
@@ -56,11 +58,22 @@ class RecipeSearchForm(forms.Form):
                     recipes[recipe_id]['ingredients_out'].append(recipe_ingredient[0])
 
                 recipes[recipe_id]['ingredients_out'].remove(ri.ingredient.name)
-        recipes = OrderedDict(sorted(recipes.items(), key=lambda t: (-(t[1]['count_have'] - t[1]['count_no_have']))))
-        return recipes
+        # recipes = OrderedDict(sorted(recipes.items(), key=lambda t: (-(t[1]['count_have'] - t[1]['count_no_have']))))
+        ret = []
+        for key, value in recipes.items():
+            ret.append({key: value})
+        return ret
 
 
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         exclude = ['user_add', 'description', 'photo']
+
+
+class IngredientBaseForm(forms.ModelForm):
+    class Meta:
+        model = Ingredient
+        exclude = []
+
+IngredientBaseFormSet = inlineformset_factory(Recipe, RecipeIngredient, exclude=[], form=IngredientBaseForm)

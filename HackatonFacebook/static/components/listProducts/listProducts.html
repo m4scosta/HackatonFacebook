@@ -1,31 +1,36 @@
 <div class="container">
-    <div ng-repeat="recipe in recipes"
-         class="col-md-3"
-         style="cursor: pointer;"
-         ng-click="openProduct($index)">
-
-        <div class="row">
-            <img class="img-responsive" ng-src="{[{recipe.photo}]}" alt=""/>
-            <div class="col-md-12">
-                <h3>
-                    <span>{[{recipe.name}]}</span>
-                </h3>
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="col-md-offset-6 col-md-3">
-                <label>
-                    Tem
-                    <span class="label label-success">{[{ recipe.count_have }]}</span>
-                </label>
+    <div class="row">
+        <div class="col-lg-3 col-sm-4 col-xs-6"
+             ng-repeat="recipe in recipes | orderBy:-myOrder"
+                ng-click="openProduct($index)">
+            <div class="row">
+                <div class="col-md-12">
+                    <a title="{[{recipe.name}]}" href="">
+                        <img class="thumbnail img-responsive" ng-src="{[{recipe.photo}]}">
+                    </a>
+                </div>
             </div>
 
-            <div class="col-md-3">
-                <label>
-                    Falta
-                    <span class="label label-danger">{[{ recipe.count_no_have }]}</span>
-                </label>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="truncate">
+                        <span>{[{recipe.name}]}</span>
+                    </h3>
+                </div>
+            </div>
+                <div class="col-md-offset-2 col-md-5">
+                    <label>
+                        Tem
+                        <span class="label label-success">{[{ recipe.count_have }]}</span>
+                    </label>
+                </div>
+
+                <div class="col-md-5">
+                    <label>
+                        Falta
+                        <span class="label label-danger">{[{ recipe.count_no_have }]}</span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>

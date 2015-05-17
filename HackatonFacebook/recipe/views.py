@@ -1,9 +1,10 @@
 import json
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from .forms import RecipeSearchForm, IngredientForm, RecipeForm
-from .models import Recipe
+from .forms import RecipeSearchForm, IngredientForm, RecipeForm, IngredientBaseFormSet
+from .models import Recipe, Like, Favorite
 
 
 def home(request):
@@ -46,12 +47,51 @@ def test_details(request, pk):
     return render(request, 'recipe/test_details.html', context)
 
 
-def recipe_create_update(request):
-    form = RecipeForm(request.POST or None, request.FILES)
+def recipe_create_update(request, pk=None):
+    if pk:
+        recipe = get_object_or_404(Recipe, pk=pk)
+    else:
+        recipe = None
+    form = RecipeForm(request.POST or None, request.FILES, instance=recipe)
+    formset = IngredientBaseFormSet(request.POST or None)
     context = {}
     if request.method == "POST":
         if form.is_valid():
             form.save()
             return redirect('home')
     context['form'] = form
+    context['formset'] = formset
     return render(request, 'recipe/recipe_form.html', context)
+
+
+@csrf_exempt
+def like(request):
+    if request.method == "POST":
+        pk = json.loads(request.read())['recipe_id']
+        recipe = get_object_or_404(Recipe, pk=pk)
+        user = request.user
+        user = get_object_or_404(User, id=user.pk)
+
+        like, created = Like.objects.get_or_create(recipe=recipe, user=user)
+        if not created:
+            raise TypeError()
+        return HttpResponse(json.dumps({'ok': 'ok'}))
+    return HttpResponse(json.dumps({'false': 'false'}))
+
+
+@csrf_exempt
+def favoritos(request):
+    if request.method == "POST":
+        pk = json.loads(request.read())['recipe_id']
+        recipe = get_object_or_404(Recipe, pk=pk)
+        user = request.user
+        user = get_object_or_404(User, id=user.pk)
+
+        like, created = Favorite.objects.get_or_create(recipe=recipe, user=user)
+        if not created:
+            raise TypeError()
+            
+        favorite = Favorite(recipe=recipe, user=user)
+        favorite.save()
+        return HttpResponse(json.dumps({'ok': 'ok'}))
+    return HttpResponse(json.dumps({'false': 'false'}))
