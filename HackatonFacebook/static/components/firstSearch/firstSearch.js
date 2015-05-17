@@ -30,6 +30,7 @@ angular.module('HackathonApp').directive("firstSearch", function(){
             };
 
             $scope.search = function () {
+                $scope.newIngredient();
                 $scope.have_search = $scope.small = true;
                 var send = {ingredients: []};
                 for (var i = 0; i < $scope.ingredients.length; ++i)
