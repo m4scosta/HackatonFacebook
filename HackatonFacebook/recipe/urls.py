@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns(
     '',
     url(r'^$', 'HackatonFacebook.recipe.views.home', name=u'home'),
+    url(r'^recipes$', 'HackatonFacebook.recipe.views.recipes_list', name=u'recipes_list'),
 
 
 

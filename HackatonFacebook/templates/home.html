@@ -7,8 +7,10 @@
 
 {% block js %}
     <script src="{% static 'js/controllers/homeCtrl.js' %}"></script>
+    <script>
+        window.csrf_middleware = "{{ csrf_token }}";
+    </script>
 {% endblock %}
-
 {% block body %}
     <div ng-controller="homeCtrl" class="w1h1 medium">
         <label class="pu-in-center title-style">
