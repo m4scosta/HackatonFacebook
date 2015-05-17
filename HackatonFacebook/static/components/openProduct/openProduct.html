@@ -1,0 +1,61 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="page-header">{[{ openproduct.name }]}
+            </h1>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-danger" ng-click="closeProduct()">Voltar</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+            <a href="#">
+                <img class="img-responsive" ng-src="{[{openproduct.photo}]}" alt="">
+            </a>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="panel-title">O que tenho</h3>
+                </div>
+                <ul ng-repeat="ingredient in openproduct.ingredients_in">
+                    <li class="padding-10">{[{ ingredient }]}</li>
+                </ul>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="panel-title">O que falta</h3>
+                </div>
+                <ul ng-repeat="ingredient in openproduct.ingredients_out">
+                    <li class="padding-10">{[{ ingredient }]}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="panel-title">Informações</h3>
+                </div>
+                <ul>
+                    <li class="padding-10">Rendimento</li>
+                    <li class="padding-10">Tempo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="panel-title">Como prepara</h3>
+                </div>
+                <ul ng-repeat="make in openproduct.preparation track by $index">
+                    <li class="padding-10">{[{ make }]}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

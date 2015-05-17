@@ -1,0 +1,7 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+    {% for object in qs.values %}
+        <a href="{% url 'test_details' object.id %}">{{ object.name }}</a> - tem: {{ object.count_have }} - faltam: {{ object.count_no_have }} <br>
+    {% endfor %}
+{% endblock body %}

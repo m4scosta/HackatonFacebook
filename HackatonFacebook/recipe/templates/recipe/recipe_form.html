@@ -1,0 +1,12 @@
+{% extends "base/base.html" %}
+
+{% block body %}
+    <form action="" method="POST"  enctype="multipart/form-data">
+        Nome: {{ form.name }} <br>
+        Foto: {{ form.photo_input }} <br>
+        Preparo: {{ form.preparation }} <br>
+        Tempo de preparo: {{ form.prepare_time }} <br>
+        Rendimento: {{ form.income }} <br>
+        <input type="submit" value="Cadastrar">
+    </form>
+{% endblock body %}

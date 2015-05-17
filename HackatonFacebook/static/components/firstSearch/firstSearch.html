@@ -1,0 +1,24 @@
+<div ng-hide="small" class="w1h1 medium">
+    <label class="put-in-center put-in-center-height title-style">
+        <p>O que posso fazer com?</p>
+        <div ng-if="ingredients.length > 0" >
+            <tags-hack ingredients="ingredients" msg="Ingredientes: "  btnlg="true"></tags-hack>
+        </div>
+        <input class="form-control tags-style" ui-keypress="{13:'newIngredient($event)'}" ng-model="ingerdientModel" type="text" placeholder="Ingredientes..."/>
+        <button class="btn btn-lg btn-primary" ng-click="newIngredient()">Add</button>
+        <p>
+            <button class="btn btn-lg btn-success" ng-click="search()">Pesquisar</button>
+        </p>
+    </label>
+</div>
+
+<div ng-show="small">
+    <div class="put-in-center">
+        <input class="form-control tags-style-sm" ui-keypress="{13:'newIngredient($event)'}" ng-model="ingerdientModel" type="text" placeholder="Ingredientes..."/>
+        <button class="btn btn-primary" ng-click="newIngredient()">Add</button>
+        <button class="btn btn-success" ng-click="search()">Pesquisar</button>
+    </div>
+    <div ng-if="ingredients.length > 0" class="put-in-center">
+        <tags-hack ingredients="ingredients"></tags-hack>
+    </div>
+</div>
