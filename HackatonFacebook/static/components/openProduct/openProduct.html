@@ -29,7 +29,10 @@
             </div>
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h3 class="panel-title" id="panel-title">O que falta</h3>
+                    <h3 class="panel-title" id="panel-title">
+                        <span>O que falta</span>
+                        <span class="pull-right" ng-click="publishRecipe()">publicar no facebook</span>
+                    </h3>
                 </div>
                 <ul ng-repeat="ingredient in openproduct.ingredients_out">
                     <li class="padding-10">{[{ ingredient }]}</li>
