@@ -1,3 +1,5 @@
+import json
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from .forms import RecipeSearchForm, IngredientForm
@@ -12,10 +14,10 @@ def home(request):
 def recipes_list(request):
     context = {}
     if request.method == "POST":
-        form_recipe = RecipeSearchForm(ingredients=request.GET)
+        form_recipe = RecipeSearchForm(ingredients=json.loads(request.read())['ingredients'])
         qs = form_recipe.get_queryset()
-        context['qs'] = qs
-        return render(request, 'recipe/test_list.html', context)
+        context['qs'] = json.dumps(qs)
+        return HttpResponse(context['qs'], content_type="application/json")
     return render(request, 'recipe/test_home.html', context)
 
 

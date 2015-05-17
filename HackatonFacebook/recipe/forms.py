@@ -20,7 +20,7 @@ class RecipeSearchForm(forms.Form):
         super(RecipeSearchForm, self).__init__(*args, **kwargs)
 
     def get_queryset(self):
-        ingredients = self.ingredients.getlist('ingredient')
+        ingredients = self.ingredients
         q = Q()
         # All RecipesIngredients filtered by user input
         for ingredient in ingredients:

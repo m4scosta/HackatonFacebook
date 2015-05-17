@@ -4,7 +4,7 @@
 
 angular.module('HackathonApp').controller("homeCtrl", function($scope, Ajax){
     $scope.ingredients = [];
-    $scope.recipe = [];
-    $scope.small = true;
+    $scope.recipes = [];
+    $scope.small = false;
 });
 

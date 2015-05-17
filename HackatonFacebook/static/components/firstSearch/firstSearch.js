@@ -7,7 +7,7 @@ angular.module('HackathonApp').directive("firstSearch", function(){
         restrict: 'E',
         scope: {
             ingredients: '=',
-            recipe: '=',
+            recipes: '=',
             small: '='
         },
         templateUrl: 'static/components/firstSearch/firstSearch.html',
@@ -36,7 +36,12 @@ angular.module('HackathonApp').directive("firstSearch", function(){
                     send.ingredients.push($scope.ingredients[i].name);
 
                 if (send.ingredients.length > 0) {
-                    Ajax.post('/list/receipe', angular.toJson(send)).success(function (result) {
+                    Ajax.post('/recipes', angular.toJson(send)).success(function (result) {
+                        if($scope.recipes == undefined)
+                            $scope.recipes = [];
+                        for(key in result){
+                            $scope.recipes.push(result[key]);
+                        }
                         $scope.have_search = true;
                     }).error(function (result) {
 
