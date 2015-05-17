@@ -22,7 +22,7 @@ angular.module('HackathonApp').directive('navbarHack', function(){
         			});
         		}
         	}
-            $scope.picture;
+            $scope.user;
             $scope.$watch(function() {
                 return $window.FB;
             }, function () {

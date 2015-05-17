@@ -90,8 +90,19 @@ def favoritos(request):
         like, created = Favorite.objects.get_or_create(recipe=recipe, user=user)
         if not created:
             raise TypeError()
-            
         favorite = Favorite(recipe=recipe, user=user)
         favorite.save()
         return HttpResponse(json.dumps({'ok': 'ok'}))
     return HttpResponse(json.dumps({'false': 'false'}))
+
+
+def user_favorites(request):
+    favorite_recipes = Favorite.objects.filter(user=request.user.pk)
+    return render(request, 'recipe/favorite_recipes.html', {'recipes': favorite_recipes})
+
+
+def imprimir(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+    faltantes = request.GET.get('q', '')
+    faltantes = faltantes.split(',')
+    return render(request, 'recipe/imprimir_faltantes.html', {'recipe': recipe, 'faltantes': faltantes})
