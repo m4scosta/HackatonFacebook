@@ -7,6 +7,10 @@ from django.shortcuts import get_object_or_404
 from .models import RecipeIngredient, Recipe, Ingredient
 
 
+def MyFn(s):
+    return -(s.values()[0]['count_have'] - s.values()[0]['count_no_have'])
+
+
 class IngredientForm(forms.Form):
     ingredient = forms.CharField(max_length=200, required=False)
 
@@ -62,6 +66,7 @@ class RecipeSearchForm(forms.Form):
         ret = []
         for key, value in recipes.items():
             ret.append({key: value})
+        ret = sorted(ret, key=MyFn)
         return ret
 
 

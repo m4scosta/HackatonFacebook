@@ -32,6 +32,10 @@ angular.module('HackathonApp').directive("openProduct", function(){
                 });
             };
 
+            $scope.imp = function(){
+                $window.location.href='/imprimir/'+ $scope.openproduct.id + '/?q=' + $scope.openproduct.ingredients_out;
+            };
+
             $scope.publishRecipe = function() {
 
                 if ($window.FB != undefined) {
