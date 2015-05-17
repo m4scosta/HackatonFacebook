@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-3 col-sm-4 col-xs-6"
-             ng-repeat="recipe in recipes"
+             ng-repeat="recipe in recipes | orderBy:-myOrder"
                 ng-click="openProduct($index)">
             <div class="row">
                 <div class="col-md-12">
@@ -18,14 +18,14 @@
                     </h3>
                 </div>
             </div>
-                <div class="col-md-offset-4 col-md-4">
+                <div class="col-md-offset-2 col-md-5">
                     <label>
                         Tem
                         <span class="label label-success">{[{ recipe.count_have }]}</span>
                     </label>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <label>
                         Falta
                         <span class="label label-danger">{[{ recipe.count_no_have }]}</span>
