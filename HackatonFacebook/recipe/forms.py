@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from collections import OrderedDict
 from django import forms
 from django.db.models import Q
 from django.forms.formsets import formset_factory
 from django.shortcuts import get_object_or_404
-from .models import RecipeIngredient, Recipe
+from .models import RecipeIngredient, Recipe, Ingredient
 
 
 class IngredientForm(forms.Form):
@@ -56,11 +55,22 @@ class RecipeSearchForm(forms.Form):
                     recipes[recipe_id]['ingredients_out'].append(recipe_ingredient[0])
 
                 recipes[recipe_id]['ingredients_out'].remove(ri.ingredient.name)
-        recipes = OrderedDict(sorted(recipes.items(), key=lambda t: (-(t[1]['count_have'] - t[1]['count_no_have']))))
-        return recipes
+        # recipes = OrderedDict(sorted(recipes.items(), key=lambda t: (-(t[1]['count_have'] - t[1]['count_no_have']))))
+        ret = []
+        for key, value in recipes.items():
+            ret.append({key: value})
+        return ret
 
 
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         exclude = ['user_add', 'description', 'photo']
+
+
+class IngredientBaseForm(forms.ModelForm):
+    class Meta:
+        model = Ingredient
+        exclude = []
+
+IngredientBaseFormSet = formset_factory(IngredientBaseForm)

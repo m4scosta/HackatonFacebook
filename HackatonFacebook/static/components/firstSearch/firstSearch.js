@@ -39,10 +39,11 @@ angular.module('HackathonApp').directive("firstSearch", function(){
                 if (send.ingredients.length > 0) {
                     Ajax.post('/recipes', angular.toJson(send)).success(function (result) {
                         $scope.recipes = [];
-                        for(key in result){
-                            $scope.recipes.push(result[key]);
+                        for(var i =0; i < result.length; ++i){
+                            for(key in result[i]){
+                                $scope.recipes.push(result[i][key]);
+                            }
                         }
-                        console.log($scope.recipes);
                         $scope.have_search = true;
                     }).error(function (result) {
 
