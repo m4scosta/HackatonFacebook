@@ -1,0 +1,8 @@
+.portfolio-item{
+      margin-bottom: 25px;
+}
+
+.portfolio-item:hover{
+    background-color: #ededed;
+    border-radius: 5%;
+}

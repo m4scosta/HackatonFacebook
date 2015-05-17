@@ -1,0 +1,29 @@
+<div class="container">
+        <div ng-repeat="recipe in recipes"class="col-md-4 portfolio-item" style="cursor: pointer;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>
+                        <span>{[{recipe.name}]}</span>
+                    </h3>
+                </div>
+            </div>
+            <img class="img-responsive" ng-src="{[{recipe.photo}]}" alt="">
+            <div class="row">
+
+                <div class="col-md-offset-6 col-md-3">
+                    <label>
+                        Tem
+                        <span class="label label-success">{[{ recipe.ingredients_in.length }]}</span>
+                    </label>
+                </div>
+
+                <div class="col-md-3">
+                    <label>
+                        Falta
+                        <span class="label label-danger">{[{ recipe.ingredients_out.length }]}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
