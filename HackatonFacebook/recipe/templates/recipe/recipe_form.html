@@ -1,4 +1,11 @@
 {% extends "base/base.html" %}
+{% load staticfiles %}
+{% load formset_tags %}
+
+{% block js %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery.formset.js' %}"></script>
+{% endblock js %}
 
 {% block body %}
     <form action="" method="POST"  enctype="multipart/form-data">
@@ -7,6 +14,32 @@
         Preparo: {{ form.preparation }} <br>
         Tempo de preparo: {{ form.prepare_time }} <br>
         Rendimento: {{ form.income }} <br>
+
+        <div id="formset" data-formset-prefix="{{ formset.prefix }}">
+            {{ formset.management_form }}
+            <div data-formset-body>
+                {% for form in formset %}
+                    <div data-formset-form>
+                        {{ form }}
+                        <button type="button" data-formset-delete-button>Delete form</button>
+                    </div>
+                {% endfor %}
+            </div>
+            <script type="form-template" data-formset-empty-form>
+                {% escapescript %}
+                    <div data-formset-form>
+                        {{ formset.empty_form }}
+                        <button type="button" data-formset-delete-button>Delete form</button>
+                    </div>
+                {% endescapescript %}
+            </script>
+            <input type="button" value="Add another" data-formset-add>
+            <script>jQuery(function($) {
+                $("#formset").formset({
+                    animateForms: true
+                });
+            });</script>
+        </div>
         <input type="submit" value="Cadastrar">
     </form>
 {% endblock body %}

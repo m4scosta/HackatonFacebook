@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-7">
             <a href="#">
-                <img class="img-responsive" ng-src="{[{openproduct.photo}]}" alt="">
+                <img class="img-responsive" ng-src="{[{openproduct.photo}]}" alt="" style="max-width: 285px; max-height: 213">
             </a>
         </div>
         <div class="col-md-5">
@@ -42,8 +42,8 @@
                     <h3 class="panel-title" id="panel-title">Informações</h3>
                 </div>
                 <ul>
-                    <li class="padding-10">Rendimento</li>
-                    <li class="padding-10">Tempo</li>
+                    <li class="padding-10">Rendimento: {[{ openproduct.income }]}</li>
+                    <li class="padding-10">Tempo: {[{ openproduct.prepare_time }]}</li>
                 </ul>
             </div>
         </div>

@@ -42,8 +42,8 @@ class RecipeSearchForm(forms.Form):
                 recipes[recipe_id] = {}
                 recipes[recipe_id]['id'] = ri.recipe.id
                 recipes[recipe_id]['name'] = ri.recipe.name
-                recipes[recipe_id]['photo'] = ri.recipe.photo
-                recipes[recipe_id]['preparation'] = ri.recipe.preparation
+                recipes[recipe_id]['photo'] = ri.recipe.photo if ri.recipe.photo is not None else 'static/images/default.jpg'
+                recipes[recipe_id]['preparation'] = ri.recipe.preparation.split('\n')
                 recipes[recipe_id]['prepare_time'] = ri.recipe.prepare_time
                 recipes[recipe_id]['income'] = ri.recipe.income
                 recipes[recipe_id]['count_have'] = 1

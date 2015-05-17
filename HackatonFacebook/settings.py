@@ -40,6 +40,8 @@ INSTALLED_APPS = (
 
     'HackatonFacebook.core',
     'HackatonFacebook.recipe',
+    'jquery',
+    'djangoformsetjs',
 )
 
 MIDDLEWARE_CLASSES = (
