@@ -9,3 +9,4 @@ Pillow==2.8.1
 beautifulsoup4
 requests
 django-formset-js
+python-social-apps
