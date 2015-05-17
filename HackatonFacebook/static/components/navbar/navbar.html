@@ -15,9 +15,9 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-                            <a class="btn btn-social-icon btn-facebook btn-social-style" ng-click="login()" ng-hide="user">
-                                <i class="fa fa-facebook"></i>
-                            </a>
+							<a href="{[{ loginUrl() }]}?next=/" ng-hide="user">
+								<i class="fa fa-facebook"></i>
+							</a>
                             <div ng-show='user'>
                             	<span style="color: white;"><a href="{% url 'user-favorites' %}">{[{ user.name }]}</a></span>
                             	<img class="img-circle" ng-src="{[{ user.picture.data.url }]}" />

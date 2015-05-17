@@ -8,6 +8,10 @@ angular.module('HackathonApp').directive('navbarHack', function(){
         templateUrl: 'static/components/navbar/navbar.html',
         controller: function($scope, $window){
 
+            $scope.loginUrl = function () {
+                return $window.loginUrl;
+            }
+
         	$scope.login = function() {
         		if ($window.FB !== undefined) {
         			$window.FB.getLoginStatus(function (response) {
