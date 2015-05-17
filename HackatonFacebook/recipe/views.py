@@ -1,9 +1,10 @@
 import json
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from .forms import RecipeSearchForm, IngredientForm, RecipeForm, IngredientBaseFormSet
-from .models import Recipe
+from .models import Recipe, Like, Favorite
 
 
 def home(request):
@@ -61,3 +62,29 @@ def recipe_create_update(request, pk=None):
     context['form'] = form
     context['formset'] = formset
     return render(request, 'recipe/recipe_form.html', context)
+
+
+@csrf_exempt
+def like(request):
+    if request.method == "POST":
+        pk = json.loads(request.read())['recipe_id']
+        recipe = get_object_or_404(Recipe, pk=pk)
+        user = request.user
+        user = get_object_or_404(User, id=user.pk)
+        like = Like(recipe=recipe, user=user)
+        like.save()
+        return HttpResponse(json.dumps({'ok': 'ok'}))
+    return HttpResponse(json.dumps({'false': 'false'}))
+
+
+@csrf_exempt
+def favoritos(request):
+    if request.method == "POST":
+        pk = json.loads(request.read())['recipe_id']
+        recipe = get_object_or_404(Recipe, pk=pk)
+        user = request.user
+        user = get_object_or_404(User, id=user.pk)
+        favorite = Favorite(recipe=recipe, user=user)
+        favorite.save()
+        return HttpResponse(json.dumps({'ok': 'ok'}))
+    return HttpResponse(json.dumps({'false': 'false'}))
