@@ -13,7 +13,7 @@ angular.module('HackathonApp').directive('navbarHack', function(){
         			$window.FB.getLoginStatus(function (response) {
         				$window.FB.getLoginStatus(function (response) {
 	                        if (response.status !== "connected")  {
-	                            FB.login(function(response) {}, {
+	                            $window.FB.login(function(response) {}, {
 	                               scope: 'publish_actions', 
 	                               return_scopes: true
 	                            });
@@ -22,6 +22,28 @@ angular.module('HackathonApp').directive('navbarHack', function(){
         			});
         		}
         	}
+            $scope.picture;
+            $scope.$watch(function() {
+                return $window.FB;
+            }, function () {
+                if ($window.FB !== undefined) {
+                    $window.FB.getLoginStatus(function (response) {
+                        $window.FB.getLoginStatus(function (response) {
+                            if (response.status === "connected")  {
+                                $window.FB.api("/me", "get", {"fields": "picture,name"}, function (response) {
+                                    if (!response || response.error) {
+                                        console.log("error while requesting profile picture");
+                                    } else {
+
+                                        $scope.user = response;
+                                        $scope.$digest()
+                                    }
+                                });
+                            }
+                        });
+                    });
+                }
+            });
         }
     }
 });
