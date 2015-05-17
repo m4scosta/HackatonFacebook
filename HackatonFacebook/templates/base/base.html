@@ -29,6 +29,9 @@
              js.src = "//connect.facebook.net/en_US/sdk.js";
              fjs.parentNode.insertBefore(js, fjs);
            }(document, 'script', 'facebook-jssdk'));
+
+          window.loginUrl = "{% url 'social:begin' 'facebook' %}";
+          window.nextUrl = "/";
         </script>
 
         <script src="{% static 'lib/jquery/js/jquery-1.11.1.min.js' %}"></script>
