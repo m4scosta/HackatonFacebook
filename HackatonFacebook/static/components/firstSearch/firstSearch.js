@@ -7,7 +7,7 @@ angular.module('HackathonApp').directive("firstSearch", function(){
         restrict: 'E',
         scope: {
             ingredients: '=',
-            recipe: '=',
+            recipes: '=',
             small: '='
         },
         templateUrl: 'static/components/firstSearch/firstSearch.html',
@@ -30,14 +30,29 @@ angular.module('HackathonApp').directive("firstSearch", function(){
             };
 
             $scope.search = function () {
+                $scope.newIngredient();
                 $scope.have_search = $scope.small = true;
                 var send = {ingredients: []};
                 for (var i = 0; i < $scope.ingredients.length; ++i)
                     send.ingredients.push($scope.ingredients[i].name);
 
                 if (send.ingredients.length > 0) {
+                    for(var i = 0; i < 20; ++i) {
+                        $scope.recipes.push(
+                            {
+                                name: 'Torta de Morango',
+                                photo: 'static/images/servelet.png',
+                                preparation: ['adsfadsf', 'adsfadsf', 'adsfadsf', 'adsfadsf'],
+                                prepare_time: '',
+                                income: '',
+                                ingredients: ['a', 'b'],
+                                ingredients_in: ['a', 'b', 'd', 'e'],
+                                ingredients_out: ['c', 'y', 'x']
+                            }
+                        )
+                    }
                     Ajax.post('/list/receipe', angular.toJson(send)).success(function (result) {
-                        $scope.have_search = true;
+
                     }).error(function (result) {
 
                     });

@@ -4,17 +4,26 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'components/firstSearch/firstSearch.css' %}" />
     <link rel="stylesheet" href="{% static 'components/listProducts/listProducts.css' %}" />
+    <link rel="stylesheet" href="{% static 'components/openProduct/openProduct.css' %}" />
 {% endblock %}
 
 {% block js %}
     <script src="{% static 'js/controllers/homeCtrl.js' %}"></script>
     <script src="{% static 'components/firstSearch/firstSearch.js' %}"></script>
     <script src="{% static 'components/listProducts/listProducts.js' %}"></script>
+    <script src="{% static 'components/tags/tags.js' %}"></script>
+    <script src="{% static 'components/openProduct/openProduct.js' %}"></script>
 {% endblock %}
 
 {% block body %}
     <div ng-controller="homeCtrl" class="w1h1 medium">
-        <first-search ingredients="ingredients" recipes="recipes" small="small"></first-search>
-        <list-products ng-show="small" recipes="recipes"></list-products>
+        <first-search ng-hide="viewproduct" ingredients="ingredients" recipes="recipes" small="small"></first-search>
+        <list-products ng-show="small && !viewproduct"
+                       recipes="recipes"
+                       viewproduct="viewproduct"
+                        openproduct="openproduct"></list-products>
+        <open-product ng-show="viewproduct"
+                      viewproduct="viewproduct"
+                      openproduct="openproduct"></open-product>
     </div>
 {% endblock %}

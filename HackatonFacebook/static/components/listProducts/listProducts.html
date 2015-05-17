@@ -1,5 +1,8 @@
 <div class="container">
-        <div ng-repeat="recipe in recipes"class="col-md-4 portfolio-item" style="cursor: pointer;">
+        <div ng-repeat="recipe in recipes"
+             class="col-md-4 portfolio-item"
+             style="cursor: pointer;"
+             ng-click="openProduct($index)">
             <div class="row">
                 <div class="col-md-12">
                     <h3>
