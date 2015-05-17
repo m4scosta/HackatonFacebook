@@ -17,13 +17,14 @@
     <script src="{% static 'components/tags/tags.js' %}"></script>
     <script src="{% static 'components/openProduct/openProduct.js' %}"></script>
 {% endblock %}
+
 {% block body %}
     <div ng-controller="homeCtrl" class="w1h1 medium">
         <first-search ng-hide="viewproduct" ingredients="ingredients" recipes="recipes" small="small"></first-search>
         <list-products ng-show="small && !viewproduct"
                        recipes="recipes"
                        viewproduct="viewproduct"
-                        openproduct="openproduct"></list-products>
+                        openproduct="openproduct" style="margin: 5px 0"></list-products>
         <open-product ng-show="viewproduct"
                       viewproduct="viewproduct"
                       openproduct="openproduct"></open-product>

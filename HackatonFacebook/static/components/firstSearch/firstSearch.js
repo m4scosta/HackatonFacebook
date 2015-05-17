@@ -44,6 +44,7 @@ angular.module('HackathonApp').directive("firstSearch", function(){
                                 $scope.recipes.push(result[i][key]);
                             }
                         }
+                        console.log($scope.recipes);
                         $scope.have_search = true;
                     }).error(function (result) {
 
